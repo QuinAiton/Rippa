@@ -1,5 +1,5 @@
-import React from 'react'
 import Head from 'next/head'
+import React from 'react'
 import { imageBuilder } from '@lib/sanity'
 
 const HeadSEO = ({ site = {}, page = {}, schema }) => {
@@ -113,6 +113,7 @@ export default HeadSEO
 // replace template tags with values
 function replaceTemplateTags(string, templateTags = []) {
   let newString = string
+
 
   templateTags.map((v) => {
     newString = newString.replace(new RegExp(v.tag, 'g'), v.value)

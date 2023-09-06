@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "title": "HULL – Shopify Starter",
-  "description": "Headless Shopify starter powered by Next.js + Sanity.io",
+  "title": "Rippa",
+  "description": "Ecommerce Website",
   "previewMedia": {
     "type": "image",
     "src": ".sanity-template/assets/HULL-cover.png",
-    "alt": "HULL"
+    "alt": "Rippa"
   },
   "technologies": [
     {
