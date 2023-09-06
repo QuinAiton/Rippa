@@ -1,25 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { m } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  useCartCount,
+  useSiteContext,
+  useToggleCart,
+  useToggleMegaNav,
+} from '@lib/context'
+
 import FocusTrap from 'focus-trap-react'
+import Icon from '@components/icon'
+import Link from 'next/link'
+import MegaNavigation from '@components/menu-mega-nav'
+import Menu from '@components/menu'
+import PromoBar from '@components/promo-bar'
+import cx from 'classnames'
+import { isBrowser } from '@lib/helpers'
+import { m } from 'framer-motion'
 import { useInView } from 'react-cool-inview'
 import { useRect } from '@reach/rect'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import cx from 'classnames'
-
-import { isBrowser } from '@lib/helpers'
-
-import {
-  useSiteContext,
-  useToggleMegaNav,
-  useToggleCart,
-  useCartCount,
-} from '@lib/context'
-
-import PromoBar from '@components/promo-bar'
-import Menu from '@components/menu'
-import MegaNavigation from '@components/menu-mega-nav'
-import Icon from '@components/icon'
 
 const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
   // expand our header data
@@ -87,12 +85,15 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
                     aria-label="Go Home"
                     onClick={() => window.scrollTo(0, 0)}
                   >
-                    <Icon name="Logo" id="header" viewBox="0 0 215 150" />
+                    <h1 className='text-black   '>RIPPA</h1>
+                    {/* <Icon name="Logo" id="header" viewBox="0 0 215 150" /> */}
                   </button>
                 ) : (
                   <Link href="/" scroll={false}>
                     <a className="logo--link" aria-label="Go Home">
-                      <Icon name="Logo" id="header" viewBox="0 0 215 150" />
+                        {/* <Icon name="Logo" id="header" viewBox="0 0 215 150" /> */}
+                        <h1 className='text-black '>RIPPA</h1>
+
                     </a>
                   </Link>
                 )}

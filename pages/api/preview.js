@@ -1,8 +1,8 @@
-import { getStaticRoute, getDynamicRoute } from '@lib/routes'
+import { getDynamicRoute, getStaticRoute } from '@lib/routes'
 
 export default function handler(req, res) {
   // Bail if no secret or slug defined
-  if (req.query.token !== 'HULL' || !req.query.type) {
+  if (req.query.token !== 'RIPPA' || !req.query.type) {
     return res.status(401).json({ message: 'Invalid preview request' })
   }
 

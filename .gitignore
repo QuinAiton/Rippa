@@ -4,7 +4,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
+*Rippa_Misc
 # Runtime data
 pids
 *.pid

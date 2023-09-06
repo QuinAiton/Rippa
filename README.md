@@ -1,5 +1,5 @@
 <p align="center">
-<img src="public/HULL-Logo.svg" align="center" height="100" />
+<img src="public/RIPPA-Logo.svg" align="center" height="100" />
 </p>
 <p align="center">
   <strong>Headless Shopify starter built on <a href="https://nextjs.org">Next.js</a></strong> 🤘 <br />
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/static/v1?label=&message=View%20Demo&style=for-the-badge&color=black&logo=vercel" />
   </a>
   <br />
-  <a href="https://www.sanity.io/create?template=ndimatteo/HULL">
+  <a href="https://www.sanity.io/create?template=ndimatteo/RIPPA">
     <img src="https://img.shields.io/static/v1?label=Sanity&message=Create%20Project&style=for-the-badge&color=156dff&labelColor=black" />
   </a>
 </p>
@@ -99,7 +99,7 @@ _Using the Sanity Vercel Deploy plugin, see how easy it is to empower your clien
 
 # 🔥 Automatic Set Up
 
-Quickly [deploy as a Sanity Starter](https://www.sanity.io/create?template=ndimatteo/HULL) on [Vercel](https://vercel.com) with a pre-populated store! Once deployed, simply follow step 2 and 3 below to connect your Shopify store.
+Quickly [deploy as a Sanity Starter](https://www.sanity.io/create?template=ndimatteo/RIPPA) on [Vercel](https://vercel.com) with a pre-populated store! Once deployed, simply follow step 2 and 3 below to connect your Shopify store.
 
 > **Warning** <br />You should delete the demo products once you connect your own Shopify account. Demo products will not function properly as they are not part of _your Shopify store_. Additionally, any existing products in your Shopify store will not automatically sync into Sanity. To trigger a sync, you must make a change to your existing product(s) in Shopify first.
 
@@ -107,7 +107,7 @@ Quickly [deploy as a Sanity Starter](https://www.sanity.io/create?template=ndima
 
 # 💀 Manual Set Up
 
-Clone this repository from your GitHub account with the [Use this template](https://github.com/ndimatteo/HULL/generate) button
+Clone this repository from your GitHub account with the [Use this template](https://github.com/ndimatteo/RIPPA/generate) button
 
 ### 1) Sanity
 
@@ -217,7 +217,7 @@ This will essentially "pass-through" URLs accessed at your Shopify Store to your
 `yarn dev` in the `/studio` folder to start the studio locally
 
 - Your Sanity Studio should be running on [http://localhost:3333](http://localhost:3333)
-  > **Warning** <br />If you did not manually set up your project, the `projectId` in `/studio/sanity.json` will still be set to the HULL demo project. Make sure to update this before starting the studio, otherwise you will be denied access when trying to access your studio.
+  > **Warning** <br />If you did not manually set up your project, the `projectId` in `/studio/sanity.json` will still be set to the RIPPA demo project. Make sure to update this before starting the studio, otherwise you will be denied access when trying to access your studio.
 
 <br />
 
@@ -257,7 +257,7 @@ I've purposefully used extracted component classes, not only for cleaner file st
 <details>
 <summary><strong>What's up with the CSS? Why are you using @apply?</strong></summary>
 
-Previously, `@apply` was used to extract component classes away from your javascript files. However, since then Tailwind has been opposed to this approach. In the coming releases HULL will move away from this approach in favor of applying styles directly to the components so functionality and styling is done in one place.
+Previously, `@apply` was used to extract component classes away from your javascript files. However, since then Tailwind has been opposed to this approach. In the coming releases RIPPA will move away from this approach in favor of applying styles directly to the components so functionality and styling is done in one place.
 
 You can read more about Tailwind's stance on `@apply` here: https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
 
@@ -268,13 +268,13 @@ You can read more about Tailwind's stance on `@apply` here: https://tailwindcss.
 
 Absolutely! This starter was actually born out of a non-shopify starter I had been using for my own client projects.
 
-I made a `marketing-starter` branch that is **HULL without all the Shopify logic**! The fastest way to get started is simply cloning that branch locally into an empty project folder:
+I made a `marketing-starter` branch that is **RIPPA without all the Shopify logic**! The fastest way to get started is simply cloning that branch locally into an empty project folder:
 
 ```
-git clone -b marketing-starter --single-branch git@github.com:ndimatteo/HULL.git .
+git clone -b marketing-starter --single-branch git@github.com:ndimatteo/RIPPA.git .
 ```
 
-You can read the [setup instructions](https://github.com/ndimatteo/HULL/tree/marketing-starter#-set-up) for this version from the branch's README.
+You can read the [setup instructions](https://github.com/ndimatteo/RIPPA/tree/marketing-starter#-set-up) for this version from the branch's README.
 
 </details>
 

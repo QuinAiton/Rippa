@@ -1,16 +1,14 @@
+import { BasketIcon, EyeOpenIcon, SyncIcon } from '@sanity/icons'
 import React, { useState } from 'react'
-import axios from 'axios'
-
-import sanityClient from 'part:@sanity/base/client'
-
 import defaultResolve, {
-  PublishAction,
-  DiscardChangesAction,
   DeleteAction,
+  DiscardChangesAction,
+  PublishAction,
 } from 'part:@sanity/base/document-actions'
 
+import axios from 'axios'
+import sanityClient from 'part:@sanity/base/client'
 import { useToast } from '@sanity/ui'
-import { EyeOpenIcon, BasketIcon, SyncIcon } from '@sanity/icons'
 
 const singletons = [
   'generalSettings',
@@ -44,7 +42,7 @@ const PreviewAction = (props) => {
         window.location.hostname === 'localhost' ? localURL : remoteURL
 
       window.open(
-        `${frontendURL}/api/preview?token=HULL&type=${props.type}&slug=${
+        `${frontendURL}/api/preview?token=RIPPA&type=${props.type}&slug=${
           slug || ''
         }`
       )
