@@ -1,8 +1,7 @@
-import React from 'react'
-
 import BlockContent from '@components/block-content'
-import VideoLoop from '@components/vimeo-loop'
 import Photo from '@components/photo'
+import React from 'react'
+import VideoLoop from '@components/vimeo-loop'
 
 const Hero = ({ data = {} }) => {
   const { content, bgType, photos, video } = data
@@ -37,7 +36,7 @@ const Hero = ({ data = {} }) => {
               srcSizes={[800, 1000, 1200, 1600]}
               sizes="100vw"
               layout="fill"
-              className="hero--bg is-desktop"
+              className="hero--bg is-desktop filter brightness-75  "
             />
           )}
           {photos?.mobilePhoto && (

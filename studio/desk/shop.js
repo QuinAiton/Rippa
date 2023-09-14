@@ -1,8 +1,7 @@
+import { Copy, Gift, LinkBreak, ShoppingCart, Sliders } from 'phosphor-react'
+
 import S from '@sanity/desk-tool/structure-builder'
 import sanityClient from 'part:@sanity/base/client'
-
-import { Copy, Gift, Sliders, ShoppingCart, LinkBreak } from 'phosphor-react'
-
 import { standardViews } from './previews/standard'
 
 const collectionsMenu = S.listItem()

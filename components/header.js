@@ -8,6 +8,7 @@ import {
 
 import FocusTrap from 'focus-trap-react'
 import Icon from '@components/icon'
+import Image from 'next/image'
 import Link from 'next/link'
 import MegaNavigation from '@components/menu-mega-nav'
 import Menu from '@components/menu'
@@ -85,15 +86,16 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
                     aria-label="Go Home"
                     onClick={() => window.scrollTo(0, 0)}
                   >
-                    <h1 className='text-black   '>RIPPA</h1>
+                    {/* <h1 className='text-black   '>RIPPA</h1> */}
                     {/* <Icon name="Logo" id="header" viewBox="0 0 215 150" /> */}
+                    <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
                   </button>
                 ) : (
                   <Link href="/" scroll={false}>
                     <a className="logo--link" aria-label="Go Home">
-                        {/* <Icon name="Logo" id="header" viewBox="0 0 215 150" /> */}
-                        <h1 className='text-black '>RIPPA</h1>
-
+                        {/* <Icon name="Logo" id="header" viewBox="0 0 215 1150" /> */}
+                        {/* <h1 className='text-black '>RIPPA</h1> */}
+                        <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
                     </a>
                   </Link>
                 )}

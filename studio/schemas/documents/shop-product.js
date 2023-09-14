@@ -1,6 +1,6 @@
-import React from 'react'
-import { Gift, CloudArrowDown, ArrowsClockwise } from 'phosphor-react'
+import { ArrowsClockwise, CloudArrowDown, Gift } from 'phosphor-react'
 
+import React from 'react'
 import { getIcon } from './filter'
 
 export default {
@@ -12,7 +12,7 @@ export default {
     { title: 'Content', name: 'content', default: true },
     { title: 'Photos', name: 'photos' },
     { title: 'Settings', name: 'settings' },
-    { title: 'Shopify Data', name: 'shopify', icon: CloudArrowDown }
+    { title: 'Info', name: 'info', icon: CloudArrowDown }
   ],
   fieldsets: [
     {
@@ -142,7 +142,7 @@ export default {
       options: {
         editModal: 'popover'
       },
-      validation: Rule => Rule.unique(),
+      // validation: Rule => Rule.unique(),
       group: 'settings'
     },
     {
@@ -208,105 +208,96 @@ export default {
       type: 'seo',
       group: 'settings'
     },
-    {
-      name: 'shopifyNote',
-      type: 'note',
-      options: {
-        icon: ArrowsClockwise,
-        message:
-          'This data is automatically pulled in from your connected Shopify account. To make changes to this data please edit the product on Shopify directly.'
-      },
-      group: 'shopify'
-    },
+
     {
       title: 'Product Title',
       name: 'productTitle',
       type: 'string',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'Product ID',
       name: 'productID',
       type: 'number',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'Price (cents)',
       name: 'price',
       type: 'number',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'Compare Price (cents)',
       name: 'comparePrice',
       type: 'number',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'In Stock?',
       name: 'inStock',
       type: 'boolean',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'Low Stock?',
       name: 'lowStock',
       type: 'boolean',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'SKU',
       name: 'sku',
       type: 'string',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'URL Slug',
       name: 'slug',
       type: 'slug',
-      readOnly: true,
+      readOnly: false,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
       title: 'Options',
       name: 'options',
       type: 'array',
       of: [{ type: 'productOption' }],
-      readOnly: true,
-      group: 'shopify'
+      readOnly: false,
+      group: 'info'
     },
     {
       title: 'Draft Mode',
       name: 'isDraft',
       type: 'boolean',
-      readOnly: true,
+      readOnly: false,
       hidden: true,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     },
     {
-      title: 'Deleted from Shopify?',
+      title: 'Deleted from info?',
       name: 'wasDeleted',
       type: 'boolean',
-      readOnly: true,
+      readOnly: false,
       hidden: true,
       fieldset: '2up',
-      group: 'shopify'
+      group: 'info'
     }
   ],
   initialValue: {

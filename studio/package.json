@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
-  "author": "Nick DiMatteo <hello@nickdimatteo.com>",
+  "author": "Quinten Aiton>",
   "scripts": {
     "build": "sanity build",
     "dev": "sanity start",
