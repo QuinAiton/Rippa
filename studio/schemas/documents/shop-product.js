@@ -7,7 +7,7 @@ export default {
   name: 'product',
   title: 'Product',
   type: 'document',
-  __experimental_actions: ['update', 'publish', 'delete'],
+  // __experimental_actions: ['update', 'publish', 'delete'],
   groups: [
     { title: 'Content', name: 'content', default: true },
     { title: 'Photos', name: 'photos' },
@@ -139,9 +139,9 @@ export default {
           }
         }
       ],
-      options: {
-        editModal: 'popover'
-      },
+      // options: {
+      //   editModal: 'popover'
+      // },
       // validation: Rule => Rule.unique(),
       group: 'settings'
     },

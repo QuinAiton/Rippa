@@ -1,9 +1,8 @@
 import S from '@sanity/desk-tool/structure-builder'
-
-import { settingsMenu } from './desk/settings'
-import { pagesMenu } from './desk/pages'
-import { shopMenu } from './desk/shop'
 import { menusMenu } from './desk/menus'
+import { pagesMenu } from './desk/pages'
+import { settingsMenu } from './desk/settings'
+import { shopMenu } from './desk/shop'
 
 const hiddenDocTypes = listItem =>
   ![

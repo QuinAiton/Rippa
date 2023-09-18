@@ -1,14 +1,13 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-
-import { getPage, getAllDocSlugs } from '@data'
-
-import NotFoundPage from '@pages/404'
+import { getAllDocSlugs, getPage } from '@data'
 
 import Layout from '@components/layout'
 import { Module } from '@components/modules'
+import NotFoundPage from '@pages/404'
+import React from 'react'
+import { useRouter } from 'next/router'
 
 const Page = ({ data }) => {
+  console.log(data)
   const router = useRouter()
 
   if (!router.isFallback && !data) {
