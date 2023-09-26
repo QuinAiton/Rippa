@@ -1,17 +1,16 @@
+import {
+  ProductAdd,
+  ProductGallery,
+  ProductOption,
+  ProductPrice,
+  ProductThumbnail,
+} from '@components/product'
 import React, { useState } from 'react'
-import { m } from 'framer-motion'
+
 import Link from 'next/link'
 import cx from 'classnames'
-
 import { hasObject } from '@lib/helpers'
-
-import {
-  ProductGallery,
-  ProductThumbnail,
-  ProductPrice,
-  ProductOption,
-  ProductAdd,
-} from '@components/product'
+import { m } from 'framer-motion'
 
 const itemAnim = {
   show: {
@@ -77,11 +76,12 @@ const ProductCard = React.forwardRef(
 
     // find default variant for product
     const defaultVariant = product.variants?.find((v) => {
+      console.log({ options: product.options })
       const currentOption = defaultOption?.length
         ? defaultOption[defaultOption.length - 1]
         : {
-            name: product.options[0]?.name,
-            value: product.options[0]?.values[0],
+          name: product.options?.[0]?.name,
+          value: product.options?.[0]?.values?.[0],
           }
 
       return hasObject(v.options, currentOption)
