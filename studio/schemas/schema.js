@@ -1,5 +1,6 @@
 import accordion from './objects/accordion'
 import accordions from './objects/accordions'
+import blog from './documents/blog'
 import collection from './documents/shop-collection'
 import collectionGrid from './modules/collection-grid'
 import complexPortableText from './objects/portable-complex'
@@ -77,6 +78,7 @@ export default createSchema({
     seoSettings,
     menu,
     redirect,
+    blog,
 
     /* --------------- */
     /* 2: Module types */

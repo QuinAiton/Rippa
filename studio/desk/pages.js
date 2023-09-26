@@ -1,12 +1,10 @@
+import { Browser, House, ShoppingCart, WarningOctagon } from 'phosphor-react'
+import { Card, Stack, Text } from '@sanity/ui'
+import { IntentLink, Link } from 'part:@sanity/base/router'
+
 import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
 import sanityClient from 'part:@sanity/base/client'
-import { IntentLink, Link } from 'part:@sanity/base/router'
-
-import { Card, Stack, Text } from '@sanity/ui'
-
-import { House, Browser, ShoppingCart, WarningOctagon } from 'phosphor-react'
-
 import { standardViews } from './previews/standard'
 
 const EmptyNotice = ({ title, type, link, linkTitle }) => {
@@ -118,6 +116,24 @@ const currentErrorPage = S.listItem()
       .views(standardViews)
   })
 
+const blogSection = S.listItem()
+  .title('Blog')
+  // .icon(BlogPostIcon)
+  .child(
+    S.documentTypeList('Blog')
+      .title('Blog Posts')
+      .child(documentId =>
+        S.document()
+          .documentId(documentId)
+          .schemaType('Blog')
+          .views(standardViews)
+      )
+      .canHandleIntent(
+        (intent, { type }) =>
+          ['create', 'edit'].includes(intent) && type === 'Blog'
+      )
+  );
+
 export const pagesMenu = S.listItem()
   .title('Pages')
   .id('pages')
@@ -128,6 +144,7 @@ export const pagesMenu = S.listItem()
         currentHomePage,
         currentShopPage,
         currentErrorPage,
+        blogSection,
         S.listItem()
           .title('Other Pages')
           .schemaType('page')
