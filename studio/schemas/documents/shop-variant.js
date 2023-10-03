@@ -6,7 +6,7 @@ export default {
   name: 'productVariant',
   title: 'Variant',
   type: 'document',
-  // __experimental_actions: ['update', 'publish', 'delete'],
+  __experimental_actions: ['update', 'publish', 'delete'],
   groups: [
     { title: 'Content', name: 'content', default: true },
     { title: 'Settings', name: 'settings' },

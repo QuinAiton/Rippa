@@ -38,7 +38,8 @@ const productsMenu = S.listItem()
           .documentId(documentId)
           .schemaType('product')
           .views(standardViews)
-      )
+    )
+
   )
 
 const productVariantsMenu = S.listItem()
@@ -108,7 +109,7 @@ const filtersMenu = S.listItem()
       )
       .canHandleIntent(
         (intent, { type }) =>
-          ['create', 'edit'].includes(intent) && type === 'filter'
+          ['create', 'edit', 'update'].includes(intent) && type === 'filter'
       )
   )
 

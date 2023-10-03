@@ -36,7 +36,7 @@ const Hero = ({ data = {} }) => {
               srcSizes={[800, 1000, 1200, 1600]}
               sizes="100vw"
               layout="fill"
-              className="hero--bg is-desktop filter brightness-75  "
+              className="hero--bg is-desktop filter brightness-50  "
             />
           )}
           {photos?.mobilePhoto && (
