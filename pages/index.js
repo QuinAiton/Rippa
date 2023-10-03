@@ -1,10 +1,9 @@
-import React from 'react'
-import Error from 'next/error'
-
 import { getStaticPage, queries } from '@data'
 
+import Error from 'next/error'
 import Layout from '@components/layout'
 import { Module } from '@components/modules'
+import React from 'react'
 
 const Home = ({ data }) => {
   const { site, page } = data
@@ -55,6 +54,8 @@ export async function getStaticProps({ preview, previewData }) {
     props: {
       data: pageData,
     },
+    revalidate: 10, // Revalidate every 10 seconds
+
   }
 }
 
