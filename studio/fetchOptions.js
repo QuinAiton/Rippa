@@ -5,7 +5,7 @@ const client = sanityClient({
   projectId: 'j3iowggy',
   dataset: 'production',
   useCdn: false,
-  token: 
+  // token: 
   // Add any other configuration options here
 });
 const productId = 'product-6589381804210';
