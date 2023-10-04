@@ -1,6 +1,7 @@
+// Blog Post Schema
 export default {
-  name: 'Blog',
-  title: 'Blog',
+  name: 'BlogPost',
+  title: 'Blog Post',
   type: 'document',
   fields: [
     {
@@ -21,7 +22,11 @@ export default {
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        {
+          type: 'block',
+        },
+      ],
     },
     {
       name: 'publishedAt',

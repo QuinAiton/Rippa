@@ -1,6 +1,7 @@
 import accordion from './objects/accordion'
 import accordions from './objects/accordions'
-import blog from './documents/blog'
+import blogPage from './documents/blog-page'
+import blogPost from './documents/blog-post'
 import collection from './documents/shop-collection'
 import collectionGrid from './modules/collection-grid'
 import complexPortableText from './objects/portable-complex'
@@ -322,7 +323,7 @@ export default createSchema({
       ],
     },
     {
-      ...blog,
+      ...blogPage,
       // Define update permissions for the 'blog' document type
       // Customize the permissions as needed
       permissions: [
@@ -353,6 +354,7 @@ export default createSchema({
     gridColumn,
     gridSize,
     seo,
+    blogPost,
 
     shopFilter,
     shopSort,

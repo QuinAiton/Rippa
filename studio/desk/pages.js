@@ -117,20 +117,20 @@ const currentErrorPage = S.listItem()
   })
 
 const blogSection = S.listItem()
-  .title('Blog')
+  .title('Blog Page')
   // .icon(BlogPostIcon)
   .child(
-    S.documentTypeList('Blog')
-      .title('Blog Posts')
+    S.documentTypeList('BlogPage')
+      .title('Blog Page')
       .child(documentId =>
         S.document()
           .documentId(documentId)
-          .schemaType('Blog')
+          .schemaType('BlogPage')
           .views(standardViews)
       )
       .canHandleIntent(
         (intent, { type }) =>
-          ['create', 'edit'].includes(intent) && type === 'Blog'
+          ['create', 'edit', 'delete', 'update'].includes(intent) && type === 'Blog'
       )
   );
 
