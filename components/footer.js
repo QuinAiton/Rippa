@@ -1,26 +1,24 @@
-import React from 'react'
-
-import Newsletter from '@components/newsletter'
-import ThemeSwitch from '@components/theme-switch'
-import Menu from '@components/menu'
 import Icon from '@components/icon'
+import Menu from '@components/menu'
+import Newsletter from '@components/newsletter'
+import React from 'react'
+import ThemeSwitch from '@components/theme-switch'
 
 const Footer = ({ data = {} }) => {
   const { blocks } = data
 
+
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer--grid">
-        {blocks.map((block, key) => (
-          <div key={key} className="footer--block">
-            {block.title && <p className="is-h3">{block.title}</p>}
+        {blocks.slice(1).map((block, key) => (
+          <div key={key} className="footer--block w-full">
+            {block.title && <p className="is-h3 ">{block.title}</p>}
 
             {block.menu?.items && (
               <Menu items={block.menu.items} className="menu-footer" />
             )}
-
-            {block.newsletter && <Newsletter data={block.newsletter} />}
-
             {block.social && (
               <div className="menu-social">
                 {block.social.map((link, key) => {

@@ -5,7 +5,6 @@ import cx from 'classnames'
 const Freeform = ({ data }) => {
   const { maxWidth, textAlign, content, verticalPadding } = data
 
-  console.log(<BlockContent className={cx(verticalPadding, maxWidth, textAlign)} blocks={content} />)
 
   return <BlockContent className={cx(verticalPadding, maxWidth, textAlign)} blocks={content} />
 }

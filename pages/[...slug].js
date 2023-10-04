@@ -7,7 +7,6 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 const Page = ({ data }) => {
-  console.log(data)
   const router = useRouter()
 
   if (!router.isFallback && !data) {

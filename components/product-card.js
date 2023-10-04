@@ -76,7 +76,6 @@ const ProductCard = React.forwardRef(
 
     // find default variant for product
     const defaultVariant = product.variants?.find((v) => {
-      console.log({ options: product.options })
       const currentOption = defaultOption?.length
         ? defaultOption[defaultOption.length - 1]
         : {

@@ -4,6 +4,8 @@ export default {
   title: 'Product Option',
   name: 'productOption',
   type: 'object',
+  __experimental_actions: ['create', 'update', 'publish', 'delete'],
+
   icon: CheckCircle,
   fields: [
     {

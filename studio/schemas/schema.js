@@ -59,26 +59,284 @@ export default createSchema({
   name: 'content',
 
   types: schemaTypes.concat([
+
     /* ----------------- */
     /* 1: Document types */
-    page,
-    section,
-    product,
-    productVariant,
-    collection,
-    filter,
-    solidColor,
-
-    generalSettings,
-    cookieSettings,
-    promoSettings,
-    headerSettings,
-    footerSettings,
-    shopSettings,
-    seoSettings,
-    menu,
-    redirect,
-    blog,
+    {
+      ...page,
+      // Define update permissions for the 'page' document type
+      // You can customize this permission as needed
+      // This example allows anyone with write access to update 'page' documents
+      // You can specify more granular conditions if needed
+      // See the Sanity.io documentation for more options: https://www.sanity.io/docs/permissions
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...section,
+      // Define update permissions for the 'section' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...product,
+      // Define update permissions for the 'product' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...productVariant,
+      // Define update permissions for the 'productVariant' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...collection,
+      // Define update permissions for the 'collection' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...filter,
+      // Define update permissions for the 'filter' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...solidColor,
+      // Define update permissions for the 'solidColor' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...generalSettings,
+      // Define update permissions for the 'generalSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...cookieSettings,
+      // Define update permissions for the 'cookieSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...promoSettings,
+      // Define update permissions for the 'promoSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...headerSettings,
+      // Define update permissions for the 'headerSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...footerSettings,
+      // Define update permissions for the 'footerSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...shopSettings,
+      // Define update permissions for the 'shopSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...seoSettings,
+      // Define update permissions for the 'seoSettings' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...menu,
+      // Define update permissions for the 'menu' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...redirect,
+      // Define update permissions for the 'redirect' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
+    {
+      ...blog,
+      // Define update permissions for the 'blog' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
 
     /* --------------- */
     /* 2: Module types */
@@ -102,7 +360,22 @@ export default createSchema({
     productGalleryPhotos,
     productListingPhotos,
     productCartPhotos,
-    productOption,
+    {
+      ...productOption,
+      // Define update permissions for the 'blog' document type
+      // Customize the permissions as needed
+      permissions: [
+        {
+          // Allow updating for users with write access
+          role: 'writer', // Change to the role you want to allow
+          // You can specify more granular conditions if needed
+          // See the Sanity.io documentation for more options
+          // https://www.sanity.io/docs/permissions
+          filter: 'true',
+          actions: ['create', 'read', 'update', 'delete'],
+        },
+      ],
+    },
     productOptionValue,
     productOptionSettings,
 
