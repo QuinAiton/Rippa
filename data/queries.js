@@ -134,7 +134,8 @@ export const blocks = `
       ${ptContent}
     },
     textAlign,
-    maxWidth
+    maxWidth,
+    verticalPadding
   },
   _type == 'accordions' => {
     _type,

@@ -1,38 +1,19 @@
-import React, { useEffect, useMemo } from 'react'
-import Router from 'next/router'
-import { ThemeProvider } from 'next-themes'
-import { LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
-
 import '../styles/tailwind.css'
 import '../styles/app.css'
 
-import { isBrowser, useScrollRestoration } from '@lib/helpers'
-import { pageTransitionSpeed } from '@lib/animate'
-
+import { AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
+import React, { useEffect, useMemo } from 'react'
 import {
   SiteContextProvider,
   useSiteContext,
   useTogglePageTransition,
 } from '@lib/context'
+import { isBrowser, useScrollRestoration } from '@lib/helpers'
 
 import Cart from '@components/cart'
-
-// Console Credits
-if (isBrowser) {
-  console.groupCollapsed(
-    '%c💀 Site Credits',
-    'display:block;padding:0.125em 1em;font-family:courier;font-size:14px;font-weight:bold;line-height:2;text-transform:uppercase;background:black;color:white;'
-  )
-  console.log(
-    '%cDesign by Nick DiMatteo \n– https://nickdimatteo.com',
-    'display:block;font-family:courier;font-size:12px;font-weight:bold;line-height:1;color:black;'
-  )
-  console.log(
-    '%cDevelopment by Nick DiMatteo \n– https://nickdimatteo.com',
-    'display:block;font-family:courier;font-size:12px;font-weight:bold;line-height:1;color:black;'
-  )
-  console.groupEnd()
-}
+import Router from 'next/router'
+import { ThemeProvider } from 'next-themes'
+import { pageTransitionSpeed } from '@lib/animate'
 
 const Site = ({ Component, pageProps, router }) => {
   const togglePageTransition = useTogglePageTransition()

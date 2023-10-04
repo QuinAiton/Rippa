@@ -1,5 +1,4 @@
 import { TextAlignLeft } from 'phosphor-react'
-
 import { getPtPreview } from '../../lib/helpers'
 
 export default {
@@ -57,6 +56,24 @@ export default {
           { title: 'Center', value: 'text-center' },
           { title: 'Right', value: 'text-end' },
           { title: 'Justify', value: 'text-justify' }
+        ]
+      },
+      fieldset: 'blockOptions'
+    },
+    {
+      title: 'Vertical Padding',
+      name: 'verticalPadding',
+      type: 'string',
+      description:
+        'Change the vertical padding for the freeform',
+      options: {
+        list: [
+          { title: '10', value: 'py-10' },
+          { title: '20', value: 'py-20' },
+          { title: '40', value: 'py-40' },
+          { title: '60', value: 'py-60' },
+          { title: '80', value: 'py-80' },
+          { title: '100', value: 'py-100' }
         ]
       },
       fieldset: 'blockOptions'

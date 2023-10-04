@@ -3,9 +3,11 @@ import React from 'react'
 import cx from 'classnames'
 
 const Freeform = ({ data }) => {
-  const { maxWidth, textAlign, content } = data
+  const { maxWidth, textAlign, content, verticalPadding } = data
 
-  return <BlockContent className={cx('py-120 ', maxWidth, textAlign)} blocks={content} />
+  console.log(<BlockContent className={cx(verticalPadding, maxWidth, textAlign)} blocks={content} />)
+
+  return <BlockContent className={cx(verticalPadding, maxWidth, textAlign)} blocks={content} />
 }
 
 export default Freeform
