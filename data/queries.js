@@ -124,7 +124,9 @@ export const product = `
     }
   }
 `
-
+export const blogPage = `
+*[_type == 'BlogPage'][0]
+`
 // Construct our "blocks" GROQ
 export const blocks = `
   _type == 'freeform' => {

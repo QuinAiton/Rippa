@@ -25,8 +25,7 @@ const Loader = ({ text = 'Loading...' }) => {
 }
 
 const LoadingScreen = styled.div`
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      font-family: 'Nunito', sans-serif;
   text-align: center;
   display: flex;
   width: 100vw;

@@ -80,28 +80,22 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
           <div className="header--inner">
             <div className="header--content">
               <div className="logo">
-                {router.pathname === '/' ? (
-                  <button
+                <Link href={'/'}>
+                  <button 
                     className="logo--link"
                     aria-label="Go Home"
-                    onClick={() => window.scrollTo(0, 0)}
                   >
-                    {/* <h1 className='text-black   '>RIPPA</h1> */}
-                    {/* <Icon name="Logo" id="header" viewBox="0 0 215 150" /> */}
+                    {typeof window !== "undefined" && window?.scrollY === 0 && router.pathname === '/' ?
+                      <Image src='/secondary_logo/RIPPA LOGOS-11.png' alt='Logo' width={250} height={50} objectFit='cover' /> :
+
+
                     <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
+                    }
                   </button>
-                ) : (
-                  <Link href="/" scroll={false}>
-                    <a className="logo--link" aria-label="Go Home">
-                        {/* <Icon name="Logo" id="header" viewBox="0 0 215 1150" /> */}
-                        {/* <h1 className='text-black '>RIPPA</h1> */}
-                        <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
-                    </a>
-                  </Link>
-                )}
+                </Link>
               </div>
 
-              <nav className="main-navigation" role="navigation">
+              <nav className="" role="navigation">
                 {/* Mobile Header Menu */}
                 <div id="mobile-nav" className="main-navigation--mobile">
                   <FocusTrap active={isMobileNavOpen}>

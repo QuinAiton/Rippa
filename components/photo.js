@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { useInView } from 'react-cool-inview'
-import cx from 'classnames'
+import React, { useEffect, useState } from 'react'
+import { buildSrc, buildSrcSet } from '@lib/helpers'
 
-import { buildSrcSet, buildSrc } from '@lib/helpers'
+import cx from 'classnames'
+import { useInView } from 'react-cool-inview'
 
 const Photo = ({
   photo,

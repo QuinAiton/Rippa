@@ -89,6 +89,7 @@ module.exports = {
     extend: {
       fontFamily: {
         inherit: 'inherit',
+        nunito: ['nunito', 'sans-serif']
       },
       maxWidth: {
         xs: '20rem',

@@ -108,7 +108,7 @@ button:not([disabled]),
 }
 
 .pt-editable * {
-  font-family: 'Inter', 'Helvetica Neue', sans-serif !important;
+      font-family: 'Nunito', sans-serif;
   color: var(--pt-text);
 }
 
@@ -120,7 +120,7 @@ button:not([disabled]),
   color: var(--button-text) !important;
   border: 1px solid;
   border-radius: 9999px;
-  box-shadow: 0 0 0 5px var(--pt-bg); // covers the Sanity link outline
+  box-shadow: 0 0 0 5px var(--pt-bg); 
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 600;

@@ -52,7 +52,7 @@
 /* Google Preview */
 .googleWrapper {
   max-width: 100%;
-  font-family: Arial, sans-serif;
+      font-family: 'Nunito', sans-serif;
 }
 
 .googleTitle {
@@ -152,7 +152,7 @@
   border-width: 1px;
   border-style: solid;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Nunito', sans-serif;
 }
 
 .tweetCardContent {

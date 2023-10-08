@@ -20,7 +20,7 @@ const Home = ({ data }) => {
   return (
     <Layout site={site} page={page}>
       {page.modules?.map((module, key) => (
-        <Module key={key} index={key} data={module} />
+        <Module className='font-mono' key={key} index={key} data={module} />
       ))}
     </Layout>
   )

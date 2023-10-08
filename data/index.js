@@ -1,5 +1,7 @@
-import { getSanityClient } from '@lib/sanity'
 import * as queries from './queries'
+
+import { async } from '@vimeo/player'
+import { getSanityClient } from '@lib/sanity'
 
 // Fetch all dynamic docs
 export async function getAllDocSlugs(doc) {
@@ -59,6 +61,10 @@ export async function getPage(slug, preview) {
 
   return data
 }
+
+
+
+
 
 // Fetch a specific product with our global data
 export async function getProduct(slug, preview) {

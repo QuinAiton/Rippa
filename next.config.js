@@ -44,7 +44,7 @@ module.exports = withBundleAnalyzer({
     ]
   },
   images: {
-    domains: ['i.vimeocdn.com', 'img.youtube.com'],
+    domains: ['i.vimeocdn.com', 'img.youtube.com', 'cdn.sanity.io'],
     deviceSizes: [
       400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800,
       3000, 3200, 3400,
