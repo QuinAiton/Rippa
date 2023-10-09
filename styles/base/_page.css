@@ -16,3 +16,10 @@ body {
     @apply mx-auto;
   }
 }
+.sectionNoPadding {
+  @apply relative border-b;
+
+  &--content {
+    @apply mx-auto;
+  }
+}

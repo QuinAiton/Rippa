@@ -24,7 +24,7 @@ a[href="#content"].skip-link {
       @apply bg-transparent transition-colors duration-300;
     }
 
-    .has-bg & {
+   .has-bg  & {
       @apply bg-pageBG;
     }
 

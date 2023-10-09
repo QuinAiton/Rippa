@@ -49,10 +49,10 @@ export async function getStaticPaths() {
     paths:
       allPages?.map((page) => {
         const slugs = page.slug.split('/').filter(Boolean)
-
+        const filteredSlugs = slugs.filter((slug) => slug !== 'blog')
         return {
           params: {
-            slug: slugs,
+            slug: filteredSlugs,
           },
         }
       }) || [],

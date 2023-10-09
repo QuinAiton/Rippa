@@ -1,13 +1,16 @@
-import React from 'react'
-import cx from 'classnames'
+import React, { useEffect } from 'react'
 
-import ProductCard from '@components/product-card'
-import Freeform from '@components/freeform'
 import AccordionList from '@components/accordion-list'
+import Freeform from '@components/freeform'
+import ProductCard from '@components/product-card'
+import cx from 'classnames'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const Grid = ({ data = {} }) => {
+  const router = useRouter()
   const { size, columns } = data
-
+  const [hasHeaderImage, setHasHeaderImage] = useState(false)
   const getGridSize = (
     breakpoint,
     size,
@@ -34,12 +37,19 @@ const Grid = ({ data = {} }) => {
       align && colAlign
     )
   }
+  // get document title from head 
+  const title = (typeof window !== 'undefined' && window.document.title)
 
+  useEffect(() => {
+    setHasHeaderImage(title === 'Shop All – RIPPA')
+  }
+    , [title])
   return (
-    <section className="section">
+    <section className={`${hasHeaderImage ?
+      'sectionNoPadding' : 'section'}`}>
       <div className="section--content">
         <div
-          className={`grid grid-cols-${size} gap-x-16 gap-y-16 sm:gap-x-32 lg:gap-x-48`}
+          className={`grid grid-cols-${size}  ${hasHeaderImage ? null : 'gap-y-16 sm:gap-x-32 lg:gap-x-48'}`}
         >
           {columns.map((col, key) => {
             const { sizes, blocks } = col

@@ -9,13 +9,15 @@ const sortFallbacks = sortTypes
 export const homeID = `*[_type=="generalSettings"][0].home->_id`
 export const shopID = `*[_type=="generalSettings"][0].shop->_id`
 export const errorID = `*[_type=="generalSettings"][0].error->_id`
+export const blogID = `*[_type=="generalSettings"][0].blog->_id`
 
 // Construct our "page" GROQ
 const page = `
   "type": _type,
   "slug": slug.current,
   "isHome": _id == ${homeID},
-  "isShop": _id == ${shopID}
+  "isShop": _id == ${shopID},
+  "isBlog": _id == ${blogID},
 `
 
 // Construct our "link" GROQ

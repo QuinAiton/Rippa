@@ -17,6 +17,7 @@ const Home = ({ data }) => {
     )
   }
 
+
   return (
     <Layout site={site} page={page}>
       {page.modules?.map((module, key) => (
@@ -44,6 +45,7 @@ export async function getStaticProps({ preview, previewData }) {
       seo
     }
   `,
+
     {
       active: preview,
       token: previewData?.token,

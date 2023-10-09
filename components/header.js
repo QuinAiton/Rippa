@@ -85,7 +85,7 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
                     className="logo--link"
                     aria-label="Go Home"
                   >
-                    {typeof window !== "undefined" && window?.scrollY === 0 && router.pathname === '/' ?
+                    {typeof window !== "undefined" && window?.scrollY === 0 && (router.pathname === '/' || router.pathname === '/blog' || router.pathname === '/about') ?
                       <Image src='/secondary_logo/RIPPA LOGOS-11.png' alt='Logo' width={250} height={50} objectFit='cover' /> :
 
 

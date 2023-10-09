@@ -3,11 +3,11 @@ import Photo from '@components/photo'
 import React from 'react'
 import VideoLoop from '@components/vimeo-loop'
 
-const Hero = ({ data = {} }) => {
+const Hero = ({ data = {}, heroSmall = false }) => {
   const { content, bgType, photos, video } = data
 
   return (
-    <section className="hero">
+    <section className={`${heroSmall ? 'heroSmall' : 'hero'}`}>
       {content && (
         <div className="hero--overlay">
           <div className="hero--content">
