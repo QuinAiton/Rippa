@@ -44,15 +44,15 @@ export async function getStaticProps({ params, preview, previewData }) {
 
 export async function getStaticPaths() {
   const allPages = await getAllDocSlugs('page')
-
+  const filteredSlugs = allPages.filter((page) => page.slug !== 'blog')
   return {
     paths:
-      allPages?.map((page) => {
+      filteredSlugs?.map((page) => {
         const slugs = page.slug.split('/').filter(Boolean)
-        const filteredSlugs = slugs.filter((slug) => slug !== 'blog')
+
         return {
           params: {
-            slug: filteredSlugs,
+            slug: slugs,
           },
         }
       }) || [],

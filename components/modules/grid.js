@@ -38,12 +38,13 @@ const Grid = ({ data = {} }) => {
     )
   }
   // get document title from head 
-  const title = (typeof window !== 'undefined' && window.document.title)
 
   useEffect(() => {
+    const title = (typeof window !== 'undefined' && window.document.title)
     setHasHeaderImage(title === 'Shop All – RIPPA')
   }
-    , [title])
+    , [])
+
   return (
     <section className={`${hasHeaderImage ?
       'sectionNoPadding' : 'section'}`}>
