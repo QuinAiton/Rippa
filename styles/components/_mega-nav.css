@@ -70,7 +70,7 @@
   ul {
     a,
     button {
-      @apply inline-block text-36 leading-150 hover:opacity-40 transition-opacity duration-200;
+      @apply inline-block text-20 leading-150 hover:opacity-40 transition-opacity duration-200;
     }
   }
 

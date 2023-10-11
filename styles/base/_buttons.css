@@ -1,6 +1,6 @@
 .btn {
   /* default style button */
-  @apply clean-btn inline-block relative bg-pageBG px-20 py-9 text-center rounded-full border font-sans font-semibold text-12 leading-125 transition-colors;
+  @apply clean-btn inline-block relative bg-pageBG px-20 py-9 text-center rounded-full border font-sans font-semibold text-6 leading-125 transition-colors;
 
   /* default: hover */
   &:not(.is-primary):not(.is-white):not(.is-text):not(.is-disabled):not(.is-soldout) {
@@ -40,7 +40,7 @@
 
   /* large sized button */
   &.is-large {
-    @apply text-24 leading-125 font-normal px-28;
+    @apply text-12 leading-125 font-normal px-28;
   }
 
   /* full width button */

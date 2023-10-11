@@ -42,7 +42,7 @@ const LoadingScreenContent = styled.div`
 
   p {
     margin-top: 2rem;
-    font-size: 13px;
+    font-size: 6px;
     font-weight: 600;
   }
 `

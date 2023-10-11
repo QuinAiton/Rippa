@@ -121,7 +121,7 @@ button:not([disabled]),
   border: 1px solid;
   border-radius: 9999px;
   box-shadow: 0 0 0 5px var(--pt-bg); 
-  font-size: 0.75rem;
+  font-size: 0.35rem;
   line-height: 1rem;
   font-weight: 600;
 }
@@ -145,7 +145,7 @@ button:not([disabled]),
 
 .btn.is-large {
   padding: 0.5rem 1.75rem;
-  font-size: 1.5rem;
+  font-size: .75rem;
   line-height: 2rem;
   font-weight: 400;
 }

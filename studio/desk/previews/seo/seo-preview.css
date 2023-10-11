@@ -58,7 +58,7 @@
 .googleTitle {
   display: inline-block;
   color: #1a0dab;
-  font-size: 20px;
+  font-size: 10px;
   font-weight: 400;
   line-height: 1.3;
   white-space: 'nowrap';
@@ -73,7 +73,7 @@
 
 .googleUrl {
   color: #202124;
-  font-size: 14px;
+  font-size: 7px;
   line-height: 1.5;
   white-space: 'nowrap';
   overflow: 'hidden';
@@ -85,7 +85,7 @@
 }
 
 .googleDesc {
-  font-size: 14px;
+  font-size: 7px;
   color: #4d5156;
   line-height: 1.58;
   word-wrap: break-word;
@@ -97,7 +97,7 @@
   max-width: 100%;
   padding: 12px 12px 8px 55px;
   text-align: left;
-  font-size: 14px;
+  font-size: 7px;
   box-sizing: border-box;
   background-color: #fff;
 }
@@ -127,7 +127,7 @@
   padding: 0;
   margin-top: 2px;
   margin-left: 2px;
-  font-size: 12px;
+  font-size: 7px;
   color: rgb(91, 112, 131);
 }
 
@@ -181,7 +181,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1em;
+  font-size: .5em;
   font-weight: normal;
   margin: 0 0 0.15em;
 }
@@ -209,7 +209,7 @@
 .tweetCardIcon {
   margin-right: 2px;
   height: 1.25em;
-  font-size: 12px;
+  font-size: 6px;
   line-height: calc(18.375px);
   color: rgb(91, 112, 131);
 }
@@ -253,7 +253,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 6.5px;
   line-height: 16px;
   text-transform: uppercase;
   color: rgb(101, 103, 107);
@@ -269,7 +269,7 @@
 .facebookCardTitle a {
   color: #1d2129;
   font-family: inherit;
-  font-size: 17px;
+  font-size: 8.5px;
   font-weight: 600;
   line-height: 20px;
   margin: 3px 0 0;
@@ -279,7 +279,7 @@
 
 .facebookCardDescription {
   color: rgb(101, 103, 107);
-  font-size: 15px;
+  font-size: 7.5px;
   line-height: 20px;
   max-height: 80px;
   text-overflow: ellipsis;

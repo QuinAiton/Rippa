@@ -72,7 +72,7 @@
   }
 
   &--text {
-    @apply block p-32 text-48 leading-100;
+    @apply block p-32 text-20 leading-100;
   }
 
   &--photo {

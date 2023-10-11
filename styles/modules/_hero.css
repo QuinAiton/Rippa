@@ -1,7 +1,7 @@
 .hero {
   @apply grid relative overflow-hidden min-h-screen border-b;
   min-height: calc(var(--vh, 1vh) * 90);
-
+  
   @media (max-height: 500px) {
     min-height: 500px;
   }
@@ -25,7 +25,7 @@
   }
 
   &--content {
-    @apply w-full max-w-5xl mx-auto px-4 text-center text-white;
+    @apply  max-w-5xl mx-auto px-4 text-center text-white w-3/4 m-auto;
     padding-top: calc(var(--headerHeight) + 2rem);
     padding-bottom: var(--headerHeight);
   }

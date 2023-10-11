@@ -28,7 +28,7 @@
       @apply flex flex-col items-end mt-auto ml-auto;
 
       &--current {
-        @apply text-20 leading-150 font-semibold;
+        @apply text-12 leading-150 font-semibold;
       }
 
       &--discount {
@@ -38,7 +38,7 @@
   }
 
   &--name {
-    @apply m-0 text-30 leading-135;
+    @apply m-0 text-20 leading-135;
   }
 
   &--title {
@@ -46,7 +46,7 @@
   }
 
   &--variant {
-    @apply flex items-center mb-8 text-14 leading-160 tracking-wider font-semibold uppercase;
+    @apply flex items-center mb-8 text-12 leading-160 tracking-wider font-semibold uppercase;
 
     .label {
       @apply flex-shrink-0 -my-4 scale-90;
@@ -58,7 +58,7 @@
   }
 
   &--actions {
-    @apply sm:flex sticky bottom-0 mt-16 p-16 md:p-32 border-t bg-pageBG text-center;
+    @apply sm:flex sticky bottom-0 mt-16 p-8 md:p-16 border-t bg-pageBG text-center;
 
     .counter {
       @apply hidden sm:inline-flex mr-16;
