@@ -1,5 +1,5 @@
 .carousel {
-  @apply relative w-full bg-black;
+  @apply relative w-full;
 
   &--container {
     @apply relative overflow-hidden;

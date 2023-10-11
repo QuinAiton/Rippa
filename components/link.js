@@ -1,9 +1,8 @@
-import React from 'react'
+import { getDynamicRoute, getStaticRoute } from '@lib/routes'
+
 import NextLink from 'next/link'
+import React from 'react'
 import cx from 'classnames'
-
-import { getStaticRoute, getDynamicRoute } from '@lib/routes'
-
 import { useProductCount } from '@lib/context'
 
 const Link = ({ link, children, ...rest }) => {

@@ -6,7 +6,7 @@
   }
 
   &--gallery {
-    @apply relative mb-48 md:mb-0 xs:p-32 md:p-96 bg-pageBG border-b md:border-none;
+    @apply relative mb-48 md:mb-0 p-35 pt-0 bg-pageBG border-b md:border-none;
 
     .carousel {
       @apply max-w-xl mx-auto;
@@ -18,7 +18,7 @@
   }
 
   &--info {
-    @apply w-full max-w-xl m-auto p-16 sm:p-32;
+    @apply w-full max-w-xl m-auto p-16 my-20;
   }
 
   &--header {
@@ -58,7 +58,7 @@
   }
 
   &--actions {
-    @apply sm:flex sticky bottom-0 mt-16 p-8 md:p-16 border-t bg-pageBG text-center;
+    @apply  sm:flex sticky bottom-0 mt-16 p-8 md:p-16 border-t bg-pageBG text-center;
 
     .counter {
       @apply hidden sm:inline-flex mr-16;

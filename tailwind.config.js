@@ -91,6 +91,9 @@ module.exports = {
         inherit: 'inherit',
         nunito: ['nunito', 'sans-serif']
       },
+      cursor: {
+        'coral': 'url(/icons/coral.png), auto',
+      },
       maxWidth: {
         xs: '20rem',
         sm: '30rem',

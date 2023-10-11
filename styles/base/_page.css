@@ -1,3 +1,9 @@
+*,
+*:before,
+*:after {
+  @apply cursor-coral;
+}
+
 html {
   &.is-loading,
   &.is-loading * {
@@ -6,7 +12,7 @@ html {
 }
 
 body {
-  @apply flex flex-col;
+  @apply flex flex-col cursor-coral ;
 }
 
 .section {

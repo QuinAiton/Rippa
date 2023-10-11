@@ -9,7 +9,7 @@ const Content = ({ blocks, className }) => {
   return (
     <BlockContent
       renderContainerOnSingleChild
-      className={cx('rc ', className)}
+      className={cx('rc', 'flex flex-col gap-15', className)}
       blocks={blocks}
       serializers={blockSerializers}
     />

@@ -9,7 +9,7 @@
   }
 
   p {
-    @apply m-0 text-16 leading-150;
+    @apply m-0 text-10 leading-150;
   }
 
   strong {
@@ -173,6 +173,7 @@ h4,
     @apply mb-24;
   }
 }
+
 
 a {
   .rc & {

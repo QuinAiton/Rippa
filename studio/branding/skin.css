@@ -136,6 +136,8 @@ button:not([disabled]),
   border-color: var(--button-bg);
 }
 
+
+
 .btn.is-white {
   background: white !important;
   color: black !important;
