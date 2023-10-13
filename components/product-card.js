@@ -46,7 +46,6 @@ const ProductCard = React.forwardRef(
     ref
   ) => {
     if (!product) return null
-
     const activeFilterValues =
       activeFilters?.flatMap((f) =>
         f.values.map((v) => ({
@@ -132,7 +131,8 @@ const ProductCard = React.forwardRef(
             {showQuickAdd && activeVariant.inStock && (
               <div className="product-card--add is-inverted">
                 <ProductAdd
-                  productID={activeVariant.id}
+                  product={product}
+                  activeVariant={activeVariant}
                   className="btn is-white is-large"
                 />
               </div>

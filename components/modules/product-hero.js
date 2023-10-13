@@ -1,12 +1,12 @@
-import React from 'react'
-
-import BlockContent from '@components/block-content'
 import {
+  ProductActions,
+  ProductForm,
   ProductGallery,
   ProductPrice,
-  ProductForm,
-  ProductActions,
 } from '@components/product'
+
+import BlockContent from '@components/block-content'
+import React from 'react'
 
 const ProductHero = ({ product, activeVariant, onVariantChange }) => {
   return (
@@ -66,6 +66,7 @@ const ProductHero = ({ product, activeVariant, onVariantChange }) => {
           </div>
 
           <ProductActions
+            product={product}
             activeVariant={activeVariant}
             klaviyoAccountID={product.klaviyoAccountID}
           />

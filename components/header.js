@@ -20,8 +20,10 @@ import { useInView } from 'react-cool-inview'
 import { useRect } from '@reach/rect'
 import { useRouter } from 'next/router'
 
-const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
+const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
   // expand our header data
+
+
   const {
     promo,
     menuDesktopLeft,
@@ -81,7 +83,7 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
             <div className="header--content">
               <div className="logo">
                 <Link href={'/'}>
-                  <button 
+                  <button
                     className="logo--link"
                     aria-label="Go Home"
                   >
@@ -89,7 +91,7 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
                       <Image src='/secondary_logo/RIPPA LOGOS-11.png' alt='Logo' width={250} height={50} objectFit='cover' /> :
 
 
-                    <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
+                      <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
                     }
                   </button>
                 </Link>
@@ -213,21 +215,34 @@ const Header = ({ data = {}, isTransparent, onSetup = () => {} }) => {
 
 const CartToggle = () => {
   const toggleCart = useToggleCart()
-  const cartCount = useCartCount()
+  const [checkoutCount, setCheckoutCount] = useState(0)
+
+  useEffect(() => {
+    const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
+    setCheckoutCount(existingProducts.length);
+  }, [])
+
+  typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
+    const { quantity } = event.detail;
+    setCheckoutCount(checkoutCount + quantity);
+
+  });
 
   return (
     <button className="cart-toggle" onClick={() => toggleCart()}>
       Cart
       <span
         className={cx('cart-toggle--count', {
-          'is-active': cartCount > 0,
+          'is-active': checkoutCount > 0,
         })}
       >
-        {cartCount}
+        {checkoutCount}
       </span>
     </button>
   )
 }
+
+
 
 const HeaderBackdrop = ({ isActive, onClick }) => {
   return (

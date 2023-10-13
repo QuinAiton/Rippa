@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-
 import {
-  ProductCounter,
   ProductAdd,
+  ProductCounter,
   ProductWaitlist,
 } from '@components/product'
+import React, { useState } from 'react'
 
-const ProductActions = ({ activeVariant, klaviyoAccountID }) => {
+const ProductActions = ({ activeVariant, product, klaviyoAccountID }) => {
   // set default quantity
   const [quantity, setQuantity] = useState(1)
-
   return (
     <div className="product--actions">
       {activeVariant?.inStock ? (
@@ -20,7 +18,8 @@ const ProductActions = ({ activeVariant, klaviyoAccountID }) => {
             onUpdate={setQuantity}
           />
           <ProductAdd
-            productID={activeVariant.id}
+            activeVariant={activeVariant}
+            product={product}
             quantity={quantity}
             className="btn is-primary is-large is-block"
           >

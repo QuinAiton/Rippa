@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/router'
-import axios from 'axios'
-import useSWR from 'swr'
+import React, { useCallback, useEffect, useState } from 'react'
+import { centsToPrice, hasObject, useParams, usePrevious } from '@lib/helpers'
+import { getAllDocSlugs, getProduct } from '@data'
 
-import { getProduct, getAllDocSlugs } from '@data'
-
-import { useParams, usePrevious, centsToPrice, hasObject } from '@lib/helpers'
-
-import { useSiteContext } from '@lib/context'
-
-import NotFoundPage from '@pages/404'
 import Layout from '@components/layout'
 import { Module } from '@components/modules'
+import NotFoundPage from '@pages/404'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import useSWR from 'swr'
+import { useSiteContext } from '@lib/context'
 
 // setup our inventory fetcher
 const fetchInventory = (url, id) =>
@@ -94,24 +91,7 @@ const Product = ({ data }) => {
     { errorRetryCount: 3 }
   )
 
-  // rehydrate our product after inventory is fetched
-  useEffect(() => {
-    if (page.product && productInventory) {
-      setProduct({
-        ...page.product,
-        inStock: productInventory.inStock,
-        lowStock: productInventory.lowStock,
-        variants: [
-          ...page.product.variants.map((v) => {
-            const newInventory = productInventory.variants.find(
-              (nv) => nv.id === v.id
-            )
-            return newInventory ? { ...v, ...newInventory } : v
-          }),
-        ],
-      })
-    }
-  }, [page.product, productInventory])
+
 
   return (
     <>
