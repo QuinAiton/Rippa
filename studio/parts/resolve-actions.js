@@ -75,7 +75,7 @@ const ShopifyAction = ({ draft, published }) => {
         window.location.hostname === 'localhost' ? localURL : remoteURL
 
       axios({
-        url: `${frontendURL}/api/shopify/product-images`,
+        url: `${frontendURL}/api/product-images`,
         method: 'POST',
         data: published,
       })

@@ -1,8 +1,7 @@
-import sanityClient from '@sanity/client'
 import axios from 'axios'
-
-import { queries } from '@data'
 import { buildSrc } from '@lib/helpers'
+import { queries } from '@data'
+import sanityClient from '@sanity/client'
 
 const sanity = sanityClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
@@ -71,29 +70,6 @@ export default async function handler(req, res) {
 
   const generateSrc = (asset) => buildSrc(asset, { width: 800, height: 800 })
 
-  const shopifyConfig = {
-    'Content-Type': 'application/json',
-    'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_TOKEN,
-  }
 
-  // Write our images to Shopify
-  const shopifyProduct = await axios({
-    url: `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_ID}.myshopify.com/admin/api/2022-10/products/${productID}.json`,
-    method: 'PUT',
-    headers: shopifyConfig,
-    data: {
-      product: {
-        id: productID,
-        images: hasVariantPhotos
-          ? variantPhotoSets.map((set) => ({
-              src: generateSrc(set.photo),
-              variant_ids: set.variants.map((v) => v.variantID),
-            }))
-          : [{ src: generateSrc(product.cartPhotos[0].default) }],
-      },
-    },
-  }).then((res) => res.data)
 
-  res.statusCode = 200
-  res.json(shopifyProduct)
 }

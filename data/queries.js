@@ -82,6 +82,12 @@ export const product = `
           ${imageMeta}
         }
       },
+      "cart": cartPhotos[]{
+      forOption,
+      cartPhoto[]{
+        ${imageMeta}
+      }
+    },
       "listing": listingPhotos[]{
         forOption,
         "default": listingPhoto{

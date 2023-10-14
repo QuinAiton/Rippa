@@ -1,30 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import FocusTrap from 'focus-trap-react'
-import { m } from 'framer-motion'
-import cx from 'classnames'
-
-import { centsToPrice } from '@lib/helpers'
-
+import React, { useEffect, useState } from 'react'
 import {
-  useSiteContext,
-  useCartTotals,
   useCartCount,
   useCartItems,
+  useCartTotals,
   useCheckout,
+  useSiteContext,
   useToggleCart,
 } from '@lib/context'
 
 import CartItem from '@components/cart-item'
+import FocusTrap from 'focus-trap-react'
+import cx from 'classnames'
+import { m } from 'framer-motion'
 
-const Cart = ({ data }) => {
-  const { shop } = data
+const Cart = () => {
+  const [products, setProducts] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
 
-  if (!shop) return null
+  useEffect(() => {
+    setProducts(JSON.parse(localStorage.getItem('products')) || [])
+    setCartCount(JSON.parse(localStorage.getItem('products'))?.length || 0)
+  }, [])
+
+  useEffect(() => {
+    calculateSubtotal()
+  }, [products])
+
+  typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
+    setProducts(JSON.parse(localStorage.getItem('products')) || [])
+    setCartCount(JSON.parse(localStorage.getItem('products'))?.length || 0)
+    calculateSubtotal()
+  });
+
+  const calculateSubtotal = () => {
+    let total = 0;
+    products?.forEach(product => total += product.price * product.quantity)
+    setSubTotal(total / 100)
+  }
+
 
   const { isCartOpen, isUpdating } = useSiteContext()
-  const { subTotal } = useCartTotals()
-  const cartCount = useCartCount()
-  const lineItems = useCartItems()
   const checkoutURL = useCheckout()
   const toggleCart = useToggleCart()
 
@@ -95,20 +111,19 @@ const Cart = ({ data }) => {
             </div>
 
             <div className="cart--content">
-              {lineItems?.length ? (
-                <CartItems items={lineItems} />
+              {products?.length ? (
+
+                <CartItems products={products} />
               ) : (
                 <EmptyCart />
               )}
             </div>
-
-            {lineItems?.length > 0 && (
+            {products?.length > 0 && (
               <div className="cart--footer">
                 <div className="cart--subtotal">
                   <span>Subtotal</span>
-                  <span>${centsToPrice(subTotal)}</span>
+                  <span>${subTotal}</span>
                 </div>
-
                 <a
                   href={checkoutLink}
                   onClick={(e) => goToCheckout(e)}
@@ -117,9 +132,6 @@ const Cart = ({ data }) => {
                   {isUpdating ? 'Updating...' : 'Checkout'}
                 </a>
 
-                {shop.cartMessage && (
-                  <p className="cart--message">{shop.cartMessage}</p>
-                )}
               </div>
             )}
           </div>
@@ -136,11 +148,11 @@ const Cart = ({ data }) => {
   )
 }
 
-const CartItems = ({ items }) => {
+const CartItems = ({ products }) => {
   return (
     <div className="cart--items">
-      {items.map((item) => {
-        return <CartItem key={item.id} item={item} />
+      {products?.map((product) => {
+        return <CartItem key={product.id} product={product} />
       })}
     </div>
   )

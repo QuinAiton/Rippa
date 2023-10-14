@@ -218,8 +218,12 @@ const CartToggle = () => {
   const [checkoutCount, setCheckoutCount] = useState(0)
 
   useEffect(() => {
+    let count = 0;
     const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
-    setCheckoutCount(existingProducts.length);
+    existingProducts?.forEach((product) => {
+      count += product.quantity;
+    })
+    setCheckoutCount(count);
   }, [])
 
   typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
