@@ -226,10 +226,10 @@ const CartToggle = () => {
     setCheckoutCount(count);
   }, [])
 
+
   typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
     const { quantity } = event.detail;
-    setCheckoutCount(checkoutCount + quantity);
-
+    setCheckoutCount(prevCount => prevCount = quantity);
   });
 
   return (

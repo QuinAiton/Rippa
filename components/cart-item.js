@@ -4,7 +4,6 @@ import { useRemoveItem, useToggleCart, useUpdateItem } from '@lib/context'
 import Link from 'next/link'
 import Photo from '@components/photo'
 import React from 'react'
-import { hasObject } from '@lib/helpers'
 
 function CartItem({ product }) {
 
@@ -12,8 +11,16 @@ function CartItem({ product }) {
   const updateItem = useUpdateItem()
   const toggleCart = useToggleCart()
 
-  const changeQuantity = (quantity) => {
-    updateItem(product.lineID, quantity)
+  const changeQuantity = async (quantity) => {
+    const storedProducts = await JSON.parse(localStorage.getItem('products')) || [];
+    storedProducts.forEach((storedProduct, index) => {
+      if (storedProduct.id === product.id) {
+        storedProducts[index].quantity = quantity;
+      }
+    });
+    localStorage.setItem('products', JSON.stringify(storedProducts));
+    const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity } });
+    window.dispatchEvent(updateCheckout);
   }
 
   const getListingImageByVariant = () => {

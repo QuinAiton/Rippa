@@ -19,19 +19,38 @@ const Cart = () => {
   const [subTotal, setSubTotal] = useState(0);
 
   useEffect(() => {
-    setProducts(JSON.parse(localStorage.getItem('products')) || [])
-    setCartCount(JSON.parse(localStorage.getItem('products'))?.length || 0)
-  }, [])
+    const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    setProducts(storedProducts);
+    let count = 0;
+    storedProducts.forEach((product) => {
+      count += product.quantity;
+    })
+    setCartCount(count)
+  }, []) // remove products from the dependency array
+
+  useEffect(() => {
+    calculateSubtotal()
+    let count = 0;
+    products.forEach((product) => {
+      count += product.quantity;
+    })
+    setCartCount(count)
+  }, [products]) // add products to the dependency array
 
   useEffect(() => {
     calculateSubtotal()
   }, [products])
 
   typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
+    let count = 0;
     setProducts(JSON.parse(localStorage.getItem('products')) || [])
-    setCartCount(JSON.parse(localStorage.getItem('products'))?.length || 0)
+    products?.forEach((product) => {
+      count += product.quantity;
+    })
+    setCartCount(count)
     calculateSubtotal()
   });
+
 
   const calculateSubtotal = () => {
     let total = 0;

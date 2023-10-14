@@ -1,11 +1,10 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { m, AnimatePresence } from 'framer-motion'
-import cx from 'classnames'
-
-import { clampRange } from '@lib/helpers'
-import { counterAnim } from '@lib/animate'
+import { AnimatePresence, m } from 'framer-motion'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import Icon from '@components/icon'
+import { clampRange } from '@lib/helpers'
+import { counterAnim } from '@lib/animate'
+import cx from 'classnames'
 
 const ProductCounter = React.memo(
   ({ id, defaultCount = 1, onUpdate, max, className }) => {
@@ -25,6 +24,7 @@ const ProductCounter = React.memo(
       setDirection(direction)
       setMotionKey(count + (direction > 0 ? '-up' : '-down'))
       setLineQuantity(count)
+
 
       if (onUpdate) {
         onUpdate(count)
