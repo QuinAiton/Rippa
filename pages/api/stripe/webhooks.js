@@ -6,9 +6,6 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY, {
 
 
 export default async function handler(req, res) {
-
-  if (req.method === 'POST') {
-
     let event = req.body
 
     // try {
@@ -49,9 +46,5 @@ export default async function handler(req, res) {
         console.log(`Unhandled event type ${event.type}`);
     }
     // Return a 200 res to acknowledge receipt of the event
-    res.send();
-  } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
-  }
+  res.send();
 }
