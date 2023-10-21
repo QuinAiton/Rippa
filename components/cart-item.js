@@ -73,12 +73,12 @@ function CartItem({ product }) {
               id={product.id}
               defaultCount={product.quantity}
               onUpdate={changeQuantity}
-              className="is-small is-inverted"
+              className="is-small"
             />
           </div>
           <button
             onClick={() => removeItem(product.lineID)}
-            className="btn is-text"
+            className="btn is-text is-black"
           >
             Remove
           </button>

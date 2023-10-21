@@ -9,14 +9,28 @@ import {
 } from '@lib/context'
 
 import CartItem from '@components/cart-item'
+import CheckoutForm from "@components/CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
 import FocusTrap from 'focus-trap-react'
+import { Modal } from '@mui/material'
 import cx from 'classnames'
+import { loadStripe } from "@stripe/stripe-js";
 import { m } from 'framer-motion'
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
+  const { isCartOpen, isUpdating } = useSiteContext()
+  const toggleCart = useToggleCart()
+  const [hasFocus, setHasFocus] = useState(false)
+  const [showStripeForm, setShowStripeForm] = useState(false);
+
 
   useEffect(() => {
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
@@ -51,20 +65,12 @@ const Cart = () => {
     calculateSubtotal()
   });
 
-
   const calculateSubtotal = () => {
     let total = 0;
     products?.forEach(product => total += product.price * product.quantity)
     setSubTotal(total / 100)
   }
 
-
-  const { isCartOpen, isUpdating } = useSiteContext()
-  const checkoutURL = useCheckout()
-  const toggleCart = useToggleCart()
-
-  const [hasFocus, setHasFocus] = useState(false)
-  const [checkoutLink, setCheckoutLink] = useState(checkoutURL)
 
   const handleKeyDown = (e) => {
     if (e.which === 27) {
@@ -75,31 +81,17 @@ const Cart = () => {
   const goToCheckout = (e) => {
     e.preventDefault()
     toggleCart(false)
-
-    setTimeout(() => {
-      window.open(checkoutLink, '_self')
-    }, 200)
   }
 
-  // update our checkout URL to use our custom domain name
-  useEffect(() => {
-    if (checkoutURL) {
-      const buildCheckoutLink = shop.storeURL
-        ? checkoutURL.replace(
-            /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)/g,
-            shop.storeURL
-          )
-        : checkoutURL
-      setCheckoutLink(buildCheckoutLink)
-    }
-  }, [checkoutURL])
+
 
   return (
     <>
-      <FocusTrap
-        active={isCartOpen && hasFocus}
-        focusTrapOptions={{ allowOutsideClick: true }}
-      >
+
+      <div> 
+        <FocusTrap
+          active={isCartOpen && hasFocus}
+          focusTrapOptions={{ allowOutsideClick: true }}>
         <m.div
           initial="hide"
           animate={isCartOpen ? 'show' : 'hide'}
@@ -114,7 +106,7 @@ const Cart = () => {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           onKeyDown={(e) => handleKeyDown(e)}
           onAnimationComplete={(v) => setHasFocus(v === 'show')}
-          className={cx('cart is-inverted', {
+            className={cx('cart', {
             'is-active': isCartOpen,
             'is-updating': isUpdating,
           })}
@@ -130,26 +122,34 @@ const Cart = () => {
             </div>
 
             <div className="cart--content">
-              {products?.length ? (
-
-                <CartItems products={products} />
-              ) : (
-                <EmptyCart />
-              )}
+                {products?.length ? (
+                  <CartItems products={products} />
+                ) : (
+                  <EmptyCart />
+                )}
+                <hr />
+                {showStripeForm &&
+                  (<div className='App' >
+                    {clientSecret && (
+                      <Elements options={options} stripe={stripePromise}>
+                        <CheckoutForm products={products} />
+                      </Elements>
+                    )}
+                  </div>)
+                }
             </div>
-            {products?.length > 0 && (
+              {products?.length > 0 && !showStripeForm && (
               <div className="cart--footer">
                 <div className="cart--subtotal">
                   <span>Subtotal</span>
                   <span>${subTotal}</span>
                 </div>
-                <a
-                  href={checkoutLink}
-                  onClick={(e) => goToCheckout(e)}
-                  className="btn is-primary is-inverted is-large is-block"
+                  <button
+                    onClick={() => setShowStripeForm(true)}
+                    className="btn is-primary is-large is-block"
                 >
                   {isUpdating ? 'Updating...' : 'Checkout'}
-                </a>
+                  </button>
 
               </div>
             )}
@@ -162,7 +162,7 @@ const Cart = () => {
           'is-active': isCartOpen,
         })}
         onClick={() => toggleCart(false)}
-      />
+        /></div>
     </>
   )
 }
@@ -184,3 +184,7 @@ const EmptyCart = () => (
 )
 
 export default Cart
+
+
+
+

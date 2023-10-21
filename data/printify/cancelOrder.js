@@ -11,7 +11,9 @@ export default async function cancelOrder(req, res) {
       },
     });
 
-    res.status(200).json(response.data);
+    if (response.status === 200) {
+      return { success: true, data: null };
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to cancel order' });

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function handler(req, res) {
+export default async function submitOrder(req, res) {
   const { method, body } = req;
   const { order_id } = body;
   if (method !== 'POST') {
@@ -14,7 +14,9 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${process.env.PRINTIFY_API_KEY}`,
       },
     });
-    return res.status(200).json(response.data);
+    if (response.status === 200) {
+      return { success: true, data: response.data };
+    }
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Unable to send order to production' });
