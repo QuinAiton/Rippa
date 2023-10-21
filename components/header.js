@@ -39,6 +39,7 @@ const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
   const headerRef = useRef()
   const headerRect = useRect(headerRef)
   const router = useRouter()
+  const [isMobile, setIsMobile] = useState(false)
 
   // setup menu toggle event
   const toggleMobileNav = (state) => {
@@ -62,6 +63,11 @@ const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
   useEffect(() => {
     onSetup({ height: headerHeight })
   }, [headerHeight])
+
+  useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    setIsMobile(isMobile)
+  }, [])
 
   return (
     <>
@@ -88,10 +94,10 @@ const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
                     aria-label="Go Home"
                   >
                     {typeof window !== "undefined" && window?.scrollY === 0 && (router.pathname === '/' || router.pathname === '/blog' || router.pathname === '/about') ?
-                      <Image src='/secondary_logo/RIPPA LOGOS-11.png' alt='Logo' width={250} height={50} objectFit='cover' /> :
+                      <Image src='/secondary_logo/RIPPA LOGOS-11.png' alt='Logo' width={isMobile ? 150 : 250} height={50} objectFit='cover' /> :
 
 
-                      <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={250} height={50} objectFit='cover' />
+                      <Image src='/secondary_logo/RIPPA LOGOS-18.png' alt='Logo' width={isMobile ? 150 : 250} height={50} objectFit='cover' />
                     }
                   </button>
                 </Link>
