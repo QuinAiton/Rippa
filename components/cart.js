@@ -30,6 +30,7 @@ const Cart = () => {
   const toggleCart = useToggleCart()
   const [hasFocus, setHasFocus] = useState(false)
   const [showStripeForm, setShowStripeForm] = useState(false);
+  const [clientSecret, setClientSecret] = useState('');
 
 
   useEffect(() => {
@@ -83,6 +84,25 @@ const Cart = () => {
     toggleCart(false)
   }
 
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("/api/stripe/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
+
+  const appearance = {
+    theme: 'stripe',
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
 
 
   return (
