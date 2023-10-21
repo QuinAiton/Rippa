@@ -1,6 +1,7 @@
 // This is your test secret API key.
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY);
 
+
 const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
@@ -23,8 +24,8 @@ export default async function handler(req, res) {
 
     res.send({
       clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id,
     });
-    console.log('client secret created')
   } catch (err) {
     console.log(err)
     res.status(500).json({ statusCode: 500, message: err.message });

@@ -31,7 +31,8 @@ const Cart = () => {
   const [hasFocus, setHasFocus] = useState(false)
   const [showStripeForm, setShowStripeForm] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
-
+  const [paymentIntentId, setPaymentIntentId] = useState('');
+  const [shipping, setShipping] = React.useState(null);
 
   useEffect(() => {
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
@@ -79,12 +80,6 @@ const Cart = () => {
     }
   }
 
-  const goToCheckout = (e) => {
-    e.preventDefault()
-    toggleCart(false)
-  }
-
-
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("/api/stripe/create-payment-intent", {
@@ -93,8 +88,10 @@ const Cart = () => {
       body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => { setClientSecret(data.clientSecret), setPaymentIntentId(data.paymentIntentId) });
   }, []);
+
+  console.log(clientSecret, paymentIntentId)
 
   const appearance = {
     theme: 'stripe',
@@ -143,33 +140,34 @@ const Cart = () => {
 
             <div className="cart--content">
                 {products?.length ? (
+                  <>
                   <CartItems products={products} />
+                  </>
                 ) : (
                   <EmptyCart />
                 )}
-                <hr />
                 {showStripeForm &&
-                  (<div className='App' >
+                  (<div className='App mt-20' >
                     {clientSecret && (
                       <Elements options={options} stripe={stripePromise}>
-                        <CheckoutForm products={products} />
+                      <CheckoutForm products={products} paymentIntentId={paymentIntentId} setShipping={setShipping} />
                       </Elements>
                     )}
                   </div>)
                 }
             </div>
-              {products?.length > 0 && !showStripeForm && (
+              {products?.length > 0 && (
               <div className="cart--footer">
                 <div className="cart--subtotal">
                   <span>Subtotal</span>
-                  <span>${subTotal}</span>
+                    <span>${(subTotal + shipping ?? 0).toFixed(2)} AUD</span>
                 </div>
-                  <button
+                  {!showStripeForm && <button
                     onClick={() => setShowStripeForm(true)}
                     className="btn is-primary is-large is-block"
                 >
                   {isUpdating ? 'Updating...' : 'Checkout'}
-                  </button>
+                  </button>}
 
               </div>
             )}

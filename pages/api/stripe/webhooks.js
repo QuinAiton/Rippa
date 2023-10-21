@@ -21,18 +21,19 @@ export default async function handler(req, res) {
     // Handle the event
     switch (event.type) {
       case 'payment_intent.succeeded':
+        console.log('payment intent succeeded')
         const paymentIntentSucceeded = event.data.object;
-        const orderData = paymentIntentSucceeded.metadata
+        const { orderData } = paymentIntentSucceeded.metadata
         try {
           await axios.post(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/proxy`,
+             `http://localhost:3000/api/proxy`,
             {
               url: `shops/${process.env.NEXT_PUBLIC_PRINTIFY_SHOP_ID}/orders.json`,
               orderData
             }
-          );
-
+           );
         } catch (error) {
+          console.log(error.response.data)
           throw new Error('unable to create order', error.response.data)
         }
         // Then define and call a function to handle the event payment_intent.succeeded
