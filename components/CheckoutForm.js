@@ -54,6 +54,7 @@ export default function CheckoutForm({ products, paymentIntentId, setShipping })
       lineItems.push({
         sku: idMap[product.variant.id],
         quantity: product.quantity,
+        product_variant_id: product.variant.id
       });
     });
     return lineItems

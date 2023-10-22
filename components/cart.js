@@ -91,8 +91,6 @@ const Cart = () => {
       .then((data) => { setClientSecret(data.clientSecret), setPaymentIntentId(data.paymentIntentId) });
   }, []);
 
-  console.log(clientSecret, paymentIntentId)
-
   const appearance = {
     theme: 'stripe',
   };

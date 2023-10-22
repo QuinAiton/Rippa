@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         const { orderData } = paymentIntentSucceeded.metadata
         try {
           await axios.post(
-             `http://localhost:3000/api/proxy`,
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/proxy`,
             {
               url: `shops/${process.env.NEXT_PUBLIC_PRINTIFY_SHOP_ID}/orders.json`,
               orderData
