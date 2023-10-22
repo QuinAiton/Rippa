@@ -67,7 +67,8 @@ const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     setIsMobile(isMobile)
-  }, [])
+  }, [router])
+
 
   return (
     <>

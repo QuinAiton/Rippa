@@ -16,10 +16,10 @@ body {
 }
 
 .section {
-  @apply relative px-16 py-48 sm:p-32 md:py-64 lg:py-80 border-b;
+  @apply relative px-16 py-32 border-b;
 
   &--content {
-    @apply mx-auto;
+    @apply mx-auto text-center;
   }
 }
 .sectionNoPadding {

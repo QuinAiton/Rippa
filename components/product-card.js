@@ -45,6 +45,7 @@ const ProductCard = React.forwardRef(
     },
     ref
   ) => {
+    showQuickAdd = false
     if (!product) return null
     const activeFilterValues =
       activeFilters?.flatMap((f) =>
