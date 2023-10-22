@@ -231,7 +231,7 @@ a[href="#content"].skip-link {
 
         a,
         button {
-          @apply text-36 leading-150;
+          @apply text-24 leading-150;
         }
       }
 

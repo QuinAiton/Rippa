@@ -28,12 +28,12 @@
 
   h2,
   .is-h2 {
-    @apply m-0 text-25 font-normal leading-125;
+    @apply m-0 text-16 md:text-25 font-normal leading-125;
   }
 
   h3,
   .is-h3 {
-    @apply m-0 text-20 font-normal leading-125;
+    @apply m-0 text-13 md:text-20 font-normal leading-125;
   }
 
   h4,
