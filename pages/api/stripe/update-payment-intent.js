@@ -61,9 +61,10 @@ export default async function handler(req, res) {
     orderData: JSON.stringify(orderData),
   };
 
+
   try {
     const paymentIntent = await stripe.paymentIntents.update(paymentIntentId, {
-      metadata, amount: Number(subtotal) * 100,
+      metadata, amount: Math.round(Number(subtotal) * 100),
     });
     console.log(paymentIntent)
     res.send({
