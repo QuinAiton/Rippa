@@ -12,7 +12,6 @@ export default async function getShippingCosts(shippingData) {
         },
       }
     );
-    console.log(response)
     if (response.status === 200) {
       return { success: true, data: response.data };
     }

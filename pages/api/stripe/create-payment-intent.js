@@ -2,7 +2,6 @@
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_PRIVATE_KEY);
 
 export default async function handler(req, res) {
-  const { items } = req.body;
   try {
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({

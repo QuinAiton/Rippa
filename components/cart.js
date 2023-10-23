@@ -12,7 +12,6 @@ import CartItem from '@components/cart-item'
 import CheckoutForm from "@components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import FocusTrap from 'focus-trap-react'
-import { Modal } from '@mui/material'
 import cx from 'classnames'
 import { loadStripe } from "@stripe/stripe-js";
 import { m } from 'framer-motion'
@@ -25,15 +24,15 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
-  const [subTotal, setSubTotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const { isCartOpen, isUpdating } = useSiteContext()
   const toggleCart = useToggleCart()
   const [hasFocus, setHasFocus] = useState(false)
   const [showStripeForm, setShowStripeForm] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
   const [paymentIntentId, setPaymentIntentId] = useState('');
-  const [shipping, setShipping] = React.useState(null);
-
+  const [shipping, setShipping] = React.useState(0);
+  const [subtotal, setSubtotal] = React.useState(shipping + total);
   useEffect(() => {
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
     setProducts(storedProducts);
@@ -42,10 +41,14 @@ const Cart = () => {
       count += product.quantity;
     })
     setCartCount(count)
-  }, []) // remove products from the dependency array
+  }, [])
 
   useEffect(() => {
-    calculateSubtotal()
+    setSubtotal((shipping + total).toFixed(2))
+  }, [shipping, total])
+
+  useEffect(() => {
+    calculateTotal()
     let count = 0;
     products.forEach((product) => {
       count += product.quantity;
@@ -54,7 +57,7 @@ const Cart = () => {
   }, [products]) // add products to the dependency array
 
   useEffect(() => {
-    calculateSubtotal()
+    calculateTotal()
   }, [products])
 
   typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
@@ -64,13 +67,13 @@ const Cart = () => {
       count += product.quantity;
     })
     setCartCount(count)
-    calculateSubtotal()
+    calculateTotal()
   });
 
-  const calculateSubtotal = () => {
+  const calculateTotal = () => {
     let total = 0;
     products?.forEach(product => total += product.price * product.quantity)
-    setSubTotal(total / 100)
+    setTotal(total / 100)
   }
 
 
@@ -80,8 +83,7 @@ const Cart = () => {
     }
   }
 
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
+  const handleCheckout = async () => {
     fetch("/api/stripe/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -89,7 +91,9 @@ const Cart = () => {
     })
       .then((res) => res.json())
       .then((data) => { setClientSecret(data.clientSecret), setPaymentIntentId(data.paymentIntentId) });
-  }, []);
+
+    setShowStripeForm(true)
+  }
 
   const appearance = {
     theme: 'stripe',
@@ -148,7 +152,7 @@ const Cart = () => {
                   (<div className='App mt-20' >
                     {clientSecret && (
                       <Elements options={options} stripe={stripePromise}>
-                      <CheckoutForm products={products} paymentIntentId={paymentIntentId} setShipping={setShipping} />
+                      <CheckoutForm products={products} paymentIntentId={paymentIntentId} setShipping={setShipping} subtotal={subtotal} />
                       </Elements>
                     )}
                   </div>)
@@ -156,12 +160,22 @@ const Cart = () => {
             </div>
               {products?.length > 0 && (
               <div className="cart--footer">
-                <div className="cart--subtotal">
-                  <span>Subtotal</span>
-                    <span>${(subTotal + shipping ?? 0).toFixed(2)} AUD</span>
-                </div>
+                  <div className="cart--subtotal flex flex-col">
+                    <div className='cart--subtotal'>
+                      <span>Total</span>
+                      <span>${total}</span>
+                    </div>
+                    <div className='cart--subtotal border-t'>
+                      <span>Shipping</span>
+                      <span>{shipping > 0 ? '$' + shipping : 'Calculated at next step'}</span>
+                    </div>
+                    <div className='cart--subtotal border-t'>
+                      <span>Subtotal</span>
+                      <span>${subtotal}</span>
+                    </div>
+                  </div>
                   {!showStripeForm && <button
-                    onClick={() => setShowStripeForm(true)}
+                    onClick={handleCheckout}
                     className="btn is-primary is-large is-block"
                 >
                   {isUpdating ? 'Updating...' : 'Checkout'}

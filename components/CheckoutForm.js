@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { idMap } from "data/printify/IdMapper";
 
-export default function CheckoutForm({ products, paymentIntentId, setShipping }) {
+export default function CheckoutForm({ products, paymentIntentId, setShipping, subtotal }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -19,33 +19,37 @@ export default function CheckoutForm({ products, paymentIntentId, setShipping })
   const [step, setStep] = React.useState(1);
 
   React.useEffect(() => {
-    if (!stripe) {
-      return;
-    }
-
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
-    );
-
-    if (!clientSecret) {
-      return;
-    }
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
+    const fetchPaymentIntent = async () => {
+      if (!stripe) {
+        return;
       }
-    });
+
+      const clientSecret = new URLSearchParams(window.location.search).get(
+        "payment_intent_client_secret"
+      );
+
+      if (!clientSecret) {
+        return;
+      }
+      const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+      if (paymentIntent) {
+        switch (paymentIntent.status) {
+          case "succeeded":
+            setMessage("Payment succeeded!");
+            break;
+          case "processing":
+            setMessage("Your payment is processing.");
+            break;
+          case "requires_payment_method":
+            setMessage("Your payment was not successful, please try again.");
+            break;
+          default:
+            setMessage("Something went wrong.");
+            break;
+        }
+      }
+    };
+    fetchPaymentIntent();
   }, [stripe]);
 
   const createLineItems = () => {
@@ -148,7 +152,7 @@ export default function CheckoutForm({ products, paymentIntentId, setShipping })
         const res = await fetch('/api/stripe/update-payment-intent', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ orderData, paymentIntentId })
+          body: JSON.stringify({ orderData, paymentIntentId, subtotal })
         }
         )
         if (res.status !== 200) throw new Error('unable to update payment intent')

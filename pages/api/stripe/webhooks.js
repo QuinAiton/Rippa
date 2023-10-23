@@ -21,7 +21,6 @@ export default async function handler(req, res) {
     // Handle the event
     switch (event.type) {
       case 'payment_intent.succeeded':
-        console.log('payment intent succeeded')
         const paymentIntentSucceeded = event.data.object;
         const { orderData } = paymentIntentSucceeded.metadata
         try {

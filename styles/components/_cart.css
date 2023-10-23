@@ -32,7 +32,7 @@
   }
 
   &--header {
-    @apply flex items-center relative px-16 py-12 sm:px-32 sm:py-24 text-10 leading-150 font-semibold uppercase;
+    @apply flex items-center relative px-16 py-4 text-10 leading-150 font-semibold uppercase;
 
     &::after {
       @apply absolute inset-x-0 bottom-0 border-t;
@@ -57,7 +57,7 @@
   }
 
   &--subtotal {
-    @apply flex justify-between px-16 py-16 sm:py-32 border-t;
+    @apply flex justify-between py-10;
 
     span {
       @apply text-12 font-semibold;
