@@ -228,15 +228,15 @@ const CartToggle = () => {
     let count = 0;
     const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
     existingProducts?.forEach((product) => {
-      count += product.quantity;
+      count += product.quantity || 0;
     })
     setCheckoutCount(count);
   }, [])
 
 
   typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
-    const { quantity } = event.detail;
-    setCheckoutCount(prevCount => prevCount = quantity);
+    const { quantity } = event?.detail || {};
+    setCheckoutCount(prevCount => prevCount = quantity || 0);
   });
 
   return (

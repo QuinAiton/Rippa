@@ -207,6 +207,8 @@ const CartItems = ({ products }) => {
   )
 }
 
+
+
 const EmptyCart = () => (
   <div className="cart--empty">
     <p>Your cart is empty</p>

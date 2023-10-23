@@ -7,8 +7,6 @@ import React from 'react'
 
 function CartItem({ product }) {
 
-  const removeItem = useRemoveItem()
-  const updateItem = useUpdateItem()
   const toggleCart = useToggleCart()
 
   const changeQuantity = async (quantity) => {
@@ -21,6 +19,13 @@ function CartItem({ product }) {
     localStorage.setItem('products', JSON.stringify(storedProducts));
     const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity } });
     window.dispatchEvent(updateCheckout);
+  }
+
+  const removeItem = (id) => {
+    const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    const updatedProducts = storedProducts.filter((product) => product.variant.id !== id);
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+    window.dispatchEvent(new Event('updateCheckoutCount'));
   }
 
   const getListingImageByVariant = () => {
@@ -77,7 +82,7 @@ function CartItem({ product }) {
             />
           </div>
           <button
-            onClick={() => removeItem(product.lineID)}
+            onClick={() => removeItem(product.variant.id)}
             className="btn is-text is-black"
           >
             Remove
