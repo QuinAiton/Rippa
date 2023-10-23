@@ -22,8 +22,7 @@ export default async function handler(req, res) {
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntentSucceeded = event.data.object;
-        const { orderData } = JSON.parse(paymentIntentSucceeded.metadata)
-        console.log(orderData)
+        const { orderData } = paymentIntentSucceeded.metadata
         try {
           await axios.post(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/proxy`,
