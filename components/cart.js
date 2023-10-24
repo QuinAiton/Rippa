@@ -103,11 +103,17 @@ const Cart = () => {
     appearance,
   };
 
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [isCartOpen])
 
   return (
     <>
-
-      <div> 
+      <div className=' overflow-y-auto'> 
         <FocusTrap
           active={isCartOpen && hasFocus}
           focusTrapOptions={{ allowOutsideClick: true }}>
