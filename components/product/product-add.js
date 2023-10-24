@@ -26,27 +26,32 @@ const ProductAdd = ({ activeVariant, product, quantity = 1, className, children 
     }
     delete productWithVariant.variants
     const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
-    updateQuantityIfExists(productWithVariant, existingProducts)
-    localStorage.setItem('products', JSON.stringify(existingProducts));
-    setProducts(existingProducts);
+    const updatedProducts = updateQuantityIfExists(productWithVariant, existingProducts);
+    localStorage.setItem('products', JSON.stringify(updatedProducts));
+    setProducts(updatedProducts);
     const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity } });
     window.dispatchEvent(updateCheckout);
     setIsAdding(false)  
   }
 
-
-  const updateQuantityIfExists = (newProduct, existingProducts) => {
+  function updateQuantityIfExists(newProduct, existingProducts) {
     let productExists = false;
-    existingProducts.forEach(product => {
+    const updatedProducts = existingProducts.map(product => {
       if (product.variant.id === newProduct.variant.id) {
-        product.quantity++;
+        product.quantity += newProduct.quantity;
         productExists = true;
       }
+      return product;
     });
     if (!productExists) {
-      existingProducts.push(newProduct);
+      updatedProducts.push(newProduct);
     }
+    return updatedProducts;
   }
+
+
+
+
 
 
   return (

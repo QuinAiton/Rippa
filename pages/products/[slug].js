@@ -10,15 +10,15 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { useSiteContext } from '@lib/context'
 
-// setup our inventory fetcher
-const fetchInventory = (url, id) =>
-  axios
-    .get(url, {
-      params: {
-        id: id,
-      },
-    })
-    .then((res) => res.data)
+// // setup our inventory fetcher
+// const fetchInventory = (url, id) =>
+//   axios
+//     .get(url, {
+//       params: {
+//         id: id,
+//       },
+//     })
+//     .then((res) => res.data)
 
 const Product = ({ data }) => {
   const router = useRouter()
@@ -84,12 +84,12 @@ const Product = ({ data }) => {
     [activeParams]
   )
 
-  // check our product inventory is still correct
-  const { data: productInventory } = useSWR(
-    ['/api/shopify/product-inventory', page.product.id],
-    ([url, id]) => fetchInventory(url, id),
-    { errorRetryCount: 3 }
-  )
+  // // check our product inventory is still correct
+  // const { data: productInventory } = useSWR(
+  //   ['/api/shopify/product-inventory', page.product.id],
+  //   ([url, id]) => fetchInventory(url, id),
+  //   { errorRetryCount: 3 }
+  // )
 
 
 
