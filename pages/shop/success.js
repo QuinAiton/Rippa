@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Success = () => {
+
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
+
   return (
     <div class="bg-gray-100 h-screen flex justify-center items-center">
       <div class="bg-white p-6 w-3/4 h-3/4  md:mx-auto flex flex-col justify-center items-center">

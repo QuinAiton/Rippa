@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   useCartCount,
   useSiteContext,
@@ -220,27 +220,36 @@ const Header = ({ data = {}, isTransparent, onSetup = () => { } }) => {
   )
 }
 
-const CartToggle = () => {
-  const toggleCart = useToggleCart()
-  const [checkoutCount, setCheckoutCount] = useState(0)
+const CartToggle = React.memo(() => {
+  const toggleCart = useToggleCart();
+  const [checkoutCount, setCheckoutCount] = useState(0);
+
+  const updateCheckoutCount = useCallback((event) => {
+    const { quantity } = event?.detail || {};
+    quantity
+    setCheckoutCount((prevCount) => prevCount + (quantity || 0));
+  }, []);
 
   useEffect(() => {
     let count = 0;
     const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
     existingProducts?.forEach((product) => {
       count += product.quantity || 0;
-    })
+    });
     setCheckoutCount(count);
-  }, [])
+  }, [updateCheckoutCount]);
 
-
-  typeof window !== 'undefined' && window?.addEventListener('updateCheckoutCount', (event) => {
-    const { quantity } = event?.detail || {};
-    setCheckoutCount(prevCount => prevCount = quantity || 0);
-  });
+  useEffect(() => {
+    typeof window !== 'undefined' &&
+      window?.addEventListener('updateCheckoutCount', updateCheckoutCount);
+    return () => {
+      typeof window !== 'undefined' &&
+        window?.removeEventListener('updateCheckoutCount', updateCheckoutCount);
+    };
+  }, [updateCheckoutCount]);
 
   return (
-    <button className="cart-toggle" onClick={() => toggleCart()}>
+    <button className="cart-toggle" onClick={toggleCart}>
       Cart
       <span
         className={cx('cart-toggle--count', {
@@ -250,8 +259,8 @@ const CartToggle = () => {
         {checkoutCount}
       </span>
     </button>
-  )
-}
+  );
+});
 
 
 

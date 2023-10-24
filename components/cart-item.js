@@ -11,27 +11,30 @@ function CartItem({ product }) {
 
   const changeQuantity = async (quantity) => {
     const storedProducts = await JSON.parse(localStorage.getItem('products')) || [];
+    let oldQuantity = 0;
     storedProducts.forEach((storedProduct, index) => {
       if (storedProduct.id === product.id) {
+        oldQuantity = storedProduct.quantity;
         storedProducts[index].quantity = quantity;
       }
     });
     localStorage.setItem('products', JSON.stringify(storedProducts));
-    const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity } });
+    const quantityDiff = quantity - oldQuantity;
+    const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity: quantityDiff } });
     window.dispatchEvent(updateCheckout);
   }
 
   const removeItem = (id) => {
     const storedProducts = JSON.parse(localStorage.getItem('products')) || [];
+    const { quantity } = storedProducts.find((product) => product.variant.id === id);
     const updatedProducts = storedProducts.filter((product) => product.variant.id !== id);
     localStorage.setItem('products', JSON.stringify(updatedProducts));
-    window.dispatchEvent(new Event('updateCheckoutCount'));
+    const updateCheckout = new CustomEvent('updateCheckoutCount', { detail: { quantity: -quantity } });
+    window.dispatchEvent(updateCheckout);
   }
 
   const getListingImageByVariant = () => {
-    const variantTitle = product.variant.title
-    const getColorFromTitle = variantTitle.split('/')
-    const [color,] = getColorFromTitle
+    const color = product?.variant?.options[0]?.value
     const listingPhotos = product.photos.listing?.find((set) => {
       if (set.forOption.includes(color.trim())) {
         return set
